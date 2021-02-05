@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Tokyo 
 
 RUN apt update \
