@@ -5,7 +5,7 @@ ENV TZ=Asia/Tokyo
 
 RUN apt update \
     && apt upgrade -y \
-    && apt install -y cmake ninja-build build-essential \
+    && apt install -y cmake ninja-build build-essential python3 \
     && apt install -y tzdata git \
     && git clone https://github.com/llvm/llvm-project.git \
     && cd llvm-project \
