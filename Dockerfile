@@ -1,21 +1,20 @@
 FROM ubuntu:20.04
 
+WORKDIR /
+
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Tokyo 
+ENV PATH=/usr/local/clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04/bin:$PATH
 
 RUN apt update \
     && apt upgrade -y \
-    && apt install -y cmake ninja-build build-essential python3 \
+    && apt install -y ninja-build build-essential libncurses5 wget \
     && apt install -y tzdata git \
-    && git clone https://github.com/llvm/llvm-project.git \
-    && cd llvm-project \
-    && mkdir build \
-    && cd build \
-    && cmake -G Ninja -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
-       -DCMAKE_C_COMPILER=/usr/bin/gcc \
-       -DCMAKE_BUILD_TYPE="Release" \
-       -DLLVM_ENABLE_PROJECTS="clang;libcxx;libcxxabi;lldb;lld" \
-       -DLLVM_TARGETS_TO_BUILD="X86;RISCV;ARM" ../llvm \
-    && cmake --build .
+    && wget https://github.com/llvm/llvm-project/releases/download/llvmorg-11.0.0/clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz \
+    && tar -zxvf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz \
+    && cp -R /usr/local/ \
+    && rm -rf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04 \
+    && rm -rf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.gz
 
-ENTRYPOINT [ "/bin/bash" ]
+
+ENTRYPOINT ["/bin/bash"]
