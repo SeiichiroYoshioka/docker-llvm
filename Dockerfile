@@ -14,7 +14,7 @@ RUN apt update \
     && tar -Jcvf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz \
     && cp -R /usr/local/ \
     && rm -rf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04 \
-    && rm -rf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.gz
+    && rm -rf clang+llvm-11.0.0-x86_64-linux-gnu-ubuntu-20.04.tar.xz
 
 
 ENTRYPOINT ["/bin/bash"]
